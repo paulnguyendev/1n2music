@@ -408,11 +408,42 @@ class AuthController extends Controller
             return redirect(rrt_route('public/home/index'));
         }
         $proSellerPlan = $this->planModel->find(3) ?? [];
+
+        // Get all subscriptions and key by slug for easier access
         $subscriptionPlan = $this->subscriptionModel->orderBy('id', 'ASC')
             ->get()
+            ->keyBy('slug')
             ->toArray();
-        $plans = array_merge([$proSellerPlan], $subscriptionPlan);
-        $sortPlans = array_replace([1 => $plans[3], 2 => $plans[0], 3 => $plans[2], 4 => $plans[1]]);
+
+        // Build sorted plans array with proper order
+        // Order: Basic Seller (monthly only), Pro Seller, Distribution Basic, Distribution Pro, Publishing
+        $sortPlans = [];
+
+        // 1. Basic Seller (free, shown only on monthly view)
+        if (isset($subscriptionPlan['basic'])) {
+            $sortPlans[] = $subscriptionPlan['basic'];
+        }
+
+        // 2. Pro Seller (always shown)
+        if (!empty($proSellerPlan)) {
+            $sortPlans[] = $proSellerPlan;
+        }
+
+        // 3. Distribution Basic (annual only)
+        if (isset($subscriptionPlan['distribution-basic'])) {
+            $sortPlans[] = $subscriptionPlan['distribution-basic'];
+        }
+
+        // 4. Distribution Pro (annual only)
+        if (isset($subscriptionPlan['distribution'])) {
+            $sortPlans[] = $subscriptionPlan['distribution'];
+        }
+
+        // 5. Publishing (annual only)
+        if (isset($subscriptionPlan['publishing'])) {
+            $sortPlans[] = $subscriptionPlan['publishing'];
+        }
+
         $user = UserModel::find($userId);
         return view(
             "{$this->pathViewController}/startSelling",
