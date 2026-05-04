@@ -22,8 +22,8 @@ class CheckDistribute
     }
     public function handle($request, Closure $next)
     {
-
-        $redirect = Subscription::checkSubscription([1, 2]);
+        // Check for Publishing (1), Distribution Pro (2), and Distribution Basic (4)
+        $redirect = Subscription::checkSubscription([1, 2, 4]);
         if ($redirect) {
             return redirect($redirect);
         }
