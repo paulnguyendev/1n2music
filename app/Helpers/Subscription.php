@@ -75,17 +75,39 @@ class Subscription
         $userType = self::checkUserType();
         $redirect = null;
         $validSubscriptionFound = false;
+
+        // Debug: Log what we're checking
+        \Log::info('CheckSubscription Debug', [
+            'user_id' => rrt_get_user_login('id'),
+            'checking_subscription_ids' => $subscription_ids
+        ]);
+
         foreach ($subscription_ids as $subscription_id) {
             $subscription = Subscription::getSubscription($subscription_id);
-            if ($subscription && $subscription->status !== 'pending') {
+
+            // Debug: Log each subscription check
+            \Log::info('CheckSubscription - Checking ID', [
+                'subscription_id' => $subscription_id,
+                'found' => $subscription ? true : false,
+                'status' => $subscription ? $subscription->status : null
+            ]);
+
+            if ($subscription && $subscription->status === 'active') {
                 $validSubscriptionFound = true;
                 break;
             }
         }
+
+        // Debug: Log result
+        \Log::info('CheckSubscription - Result', [
+            'validSubscriptionFound' => $validSubscriptionFound
+        ]);
+
         if ($validSubscriptionFound) {
             return null;
         }
-        if (!$subscription) {
+
+        if (!isset($subscription) || !$subscription) {
             $redirect = rrt_route('public/join/distribution/index');
         } else {
             $redirect = rrt_route('public/studio/account/subscription');
