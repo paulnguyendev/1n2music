@@ -61,6 +61,62 @@ class StudioReleaseController extends Controller
         $code = $request->code;
         $type = $request->type;
         $userId = rrt_get_user_login('id');
+
+        // Check distribution limits based on subscription tier
+        $user = UserModel::find($userId);
+        if ($user) {
+            $currentYear = date('Y');
+            $yearStart = $currentYear . '-01-01 00:00:00';
+
+            // Check which distribution subscription user has
+            $hasDistributionBasic = $user->subscriptionOrders()
+                ->where('subscription_id', 4)
+                ->exists();
+
+            $hasDistributionPro = $user->subscriptionOrders()
+                ->where('subscription_id', 2)
+                ->exists();
+
+            $hasPublishing = $user->subscriptionOrders()
+                ->where('subscription_id', 1)
+                ->exists();
+
+            // Define limits based on subscription tier
+            $limits = null;
+            if ($hasDistributionBasic) {
+                $limits = ['single' => 2, 'album' => 2, 'plan' => 'Distribution Basic'];
+            } elseif ($hasDistributionPro) {
+                $limits = ['single' => 4, 'album' => 2, 'plan' => 'Distribution Pro'];
+            } elseif ($hasPublishing) {
+                $limits = ['single' => 4, 'album' => 2, 'plan' => 'Publishing'];
+            }
+
+            // Enforce limits if applicable
+            if ($limits) {
+                // Count singles and albums created this year
+                $singlesThisYear = $this->model
+                    ->where('user_id', $userId)
+                    ->where('type', 'single')
+                    ->where('created_at', '>=', $yearStart)
+                    ->count();
+
+                $albumsThisYear = $this->model
+                    ->where('user_id', $userId)
+                    ->where('type', 'album')
+                    ->where('created_at', '>=', $yearStart)
+                    ->count();
+
+                // Check if user has reached the limit for the type they're trying to create
+                if ($type === 'single' && $singlesThisYear >= $limits['single']) {
+                    return redirect()->back()->with('error', "You have reached the limit of {$limits['single']} singles per year for the {$limits['plan']} plan");
+                }
+
+                if ($type === 'album' && $albumsThisYear >= $limits['album']) {
+                    return redirect()->back()->with('error', "You have reached the limit of {$limits['album']} albums per year for the {$limits['plan']} plan");
+                }
+            }
+        }
+
         $this->model->saveItem(['code' => $code, 'user_id' => $userId, 'type' => $type], ['task' => 'add-item']);
         return redirect()->route($this->controllerName . "/delivery", ['code' => $code, 'type' => $type, 'locale' => app()->getLocale()]);
         $type = $request->type;

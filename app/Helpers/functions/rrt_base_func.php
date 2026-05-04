@@ -443,20 +443,27 @@ function rrt_get_user_role($user)
 
     // Kiểm tra publishing và distribution trước
     $hasPublishing = false;
-    $hasDistribution = false;
+    $hasDistributionPro = false;
+    $hasDistributionBasic = false;
 
     foreach ($subscriptionOrders as $subscriptionOrder) {
         if ($subscriptionOrder->subscription_id == 1) {
             $hasPublishing = true;
         }
+        // Distribution Pro (id=2)
         if ($subscriptionOrder->subscription_id == 2) {
-            $hasDistribution = true;
+            $hasDistributionPro = true;
+        }
+        // Distribution Basic (id=4)
+        if ($subscriptionOrder->subscription_id == 4) {
+            $hasDistributionBasic = true;
         }
     }
 
     // Nếu có cả publishing và distribution, trả về cả hai vai trò
-    if ($hasPublishing && $hasDistribution) {
-        return ['publishing-annually', 'distribution-annually'];
+    if ($hasPublishing && ($hasDistributionPro || $hasDistributionBasic)) {
+        $distributionRole = $hasDistributionPro ? 'distribution-annually' : 'distribution-basic-annually';
+        return ['publishing-annually', $distributionRole];
     }
 
     // Nếu chỉ có publishing, trả về publishing
@@ -464,9 +471,14 @@ function rrt_get_user_role($user)
         return ['publishing-annually'];
     }
 
-    // Nếu chỉ có distribution, trả về distribution
-    if ($hasDistribution) {
+    // Nếu có Distribution Pro, trả về distribution-annually
+    if ($hasDistributionPro) {
         return ['distribution-annually'];
+    }
+
+    // Nếu có Distribution Basic, trả về distribution-basic-annually
+    if ($hasDistributionBasic) {
+        return ['distribution-basic-annually'];
     }
 
     // Kiểm tra các subscription khác chỉ khi không có publishing hoặc distribution
@@ -502,7 +514,8 @@ function rrt_get_all_user_roles($user = null)
         if ($subscriptionOrder->subscription_id == 1) {
             $hasPublishing = true;
         }
-        if ($subscriptionOrder->subscription_id == 2) {
+        // Check both Distribution Pro (id=2) and Distribution Basic (id=4)
+        if ($subscriptionOrder->subscription_id == 2 || $subscriptionOrder->subscription_id == 4) {
             $hasDistribution = true;
         }
     }
@@ -562,6 +575,9 @@ function rrt_get_user_joinType($user)
                     break;
                 case 3:
                     $packages[] = 'Basic Seller';
+                    break;
+                case 4:
+                    $packages[] = 'Distribution Basic Annually';
                     break;
             }
         }
