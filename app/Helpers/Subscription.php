@@ -112,17 +112,37 @@ class Subscription
         $userID = rrt_get_user_login('id');
         $user = UserModel::find($userID);
         $userRole = $user->role ?? 'user';
-        $subscriptions = SubscriptionOrderModel::with('info')
+
+        // Get active subscriptions with cycle information
+        $subscriptionOrders = SubscriptionOrderModel::with('info')
             ->where('user_id', $userID)
             ->where('status','active')
-            ->get()
-            ->pluck('info.slug')
-            ->toArray();
+            ->get();
+
+        $subscriptions = [];
+        foreach ($subscriptionOrders as $order) {
+            $slug = $order->info->slug ?? '';
+            $cycle = $order->cycle ?? 'annually';
+
+            // Map subscription slug to role name based on cycle
+            // For annually: append '-annually' suffix
+            // For monthly: use slug as-is
+            if ($cycle === 'annually') {
+                $subscriptions[] = $slug . '-annually';
+            } else {
+                $subscriptions[] = $slug;
+            }
+
+            // Also add the base slug for backward compatibility
+            $subscriptions[] = $slug;
+        }
+
         $plans = PlanOrderModel::with('info')
             ->where('user_id', $userID)
             ->where('status','active')
             ->get()
             ->pluck('info.type')->toArray();
+
         $userRolesAndSubsAndPlans = array_merge([$userRole], $subscriptions, $plans);
 
         return $userRolesAndSubsAndPlans;
