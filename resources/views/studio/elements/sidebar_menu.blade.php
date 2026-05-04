@@ -2,17 +2,43 @@
     use App\Helpers\Subscription;
     $userRolesAndSubs  = Subscription::checkUserRole();
     $menuPermissions = [];
+
+    // Debug: Log what roles we're checking
+    \Log::info('Sidebar Debug - User Roles', ['roles' => $userRolesAndSubs]);
+
     foreach ($userRolesAndSubs as $roleOrSub) {
         $permissions = config('studio_menu_permissions.' . $roleOrSub, []);
+
+        // Debug: Log permissions for each role
+        \Log::info('Sidebar Debug - Role Permissions', [
+            'role' => $roleOrSub,
+            'permissions' => $permissions
+        ]);
+
         $menuPermissions = array_merge($menuPermissions, $permissions);
     }
-    if (in_array('distribution', $userRolesAndSubs)) {
+
+    // Debug: Log merged permissions before filtering
+    \Log::info('Sidebar Debug - Merged Permissions', ['permissions' => $menuPermissions]);
+
+    // Check if user has any distribution subscription (distribution, distribution-basic, distribution-annually, etc.)
+    $hasDistribution = !empty(array_filter($userRolesAndSubs, function($role) {
+        return str_contains($role, 'distribution');
+    }));
+    if ($hasDistribution) {
         $menuPermissions = array_diff($menuPermissions, ['digital_distribution_signup']);
     }
-    if (in_array('publishing', $userRolesAndSubs)) {
+    // Check if user has any publishing subscription
+    $hasPublishing = !empty(array_filter($userRolesAndSubs, function($role) {
+        return str_contains($role, 'publishing');
+    }));
+    if ($hasPublishing) {
         $menuPermissions = array_diff($menuPermissions, ['publishing_signup']);
     }
     $menuPermissions = array_unique($menuPermissions);
+
+    // Debug: Log final permissions
+    \Log::info('Sidebar Debug - Final Permissions', ['permissions' => $menuPermissions]);
 
     $packageRole = rrt_get_package_with_role();
 @endphp
