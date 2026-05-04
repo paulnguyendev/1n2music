@@ -124,6 +124,14 @@ class Subscription
             $slug = $order->info->slug ?? '';
             $cycle = $order->cycle ?? 'annually';
 
+            // Debug: Log what we're getting
+            \Log::info('Subscription Debug', [
+                'user_id' => $userID,
+                'slug' => $slug,
+                'cycle' => $cycle,
+                'order_id' => $order->id
+            ]);
+
             // Map subscription slug to role name based on cycle
             // For annually: append '-annually' suffix
             // For monthly: use slug as-is
@@ -144,6 +152,12 @@ class Subscription
             ->pluck('info.type')->toArray();
 
         $userRolesAndSubsAndPlans = array_merge([$userRole], $subscriptions, $plans);
+
+        // Debug: Log final result
+        \Log::info('Final Roles', [
+            'user_id' => $userID,
+            'roles' => $userRolesAndSubsAndPlans
+        ]);
 
         return $userRolesAndSubsAndPlans;
     }
