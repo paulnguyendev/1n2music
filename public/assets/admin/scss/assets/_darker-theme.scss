@@ -1,0 +1,339 @@
+// ========================================= //
+//			Dark Theme Styling Start
+// ========================================= //
+
+body.darker {
+  background: #1c1c2f;
+  color: #fff;
+}
+
+.darker {
+  .card {
+      box-shadow: 5px 11px 23px -13px #2b2b2b;
+      -webkit-box-shadow: 5px 11px 23px -13px #2b2b2b;
+      -moz-box-shadow: 5px 11px 23px -13px #2b2b2b;
+      -ms-box-shadow: 5px 11px 23px -13px #2b2b2b;
+      border: none;
+  }
+
+  .rt_nav_header.horizontal-layout .nav-bottom .page-navigation {
+      background: #1c1d34;
+  }
+  .main-content,
+  .jsgrid-filter-row>.jsgrid-cell,
+  #sidebar-menu > ul > li > a.active{
+    background: #1c1c2f;
+    color: #fff;
+  }
+  .submenu li.active > a,
+  .submenu li a:hover {
+    background: transparent;
+    color: #fff;
+  }
+
+  .rt_nav_header.horizontal-layout .nav-bottom,
+  .rt_nav_header.horizontal-layout .top_nav,
+  .footer-area,
+  .header-area {
+    background: #1c1c35;
+    border-bottom: 1px solid #32365a;
+  }
+
+  .dropdown-item:focus, .dropdown-item:hover {
+    background: #1c1c35;
+  }
+
+  .card-header,
+  .card-header a {
+    background-color: #1c1c35;
+    color: #fff;
+    &:before {
+      color: #fff;
+    }
+  }
+
+  .header-area .nav-btn span {
+    background: #fff;
+  }
+
+  .accordion .card-body,
+  .page-item.disabled .page-link {
+    background: #212143;
+  }
+
+  .dropdown-divider,
+  .table thead th,
+  .table td, .table th,
+  .accordion .card-body,
+  .team_member,
+  .modal-header,
+  .modal-footer,
+  .page-link,
+  .popover-header,
+  .grid-col,
+  .fw-icons,
+  .et-examples .box1 span,
+  .et-examples .box1,
+  .dropzone.dropzone-light,
+  .form-control,
+  .custom-select,
+  .input-group-text,
+  .custom-file,
+  .custom-file-label,
+  .jsgrid .jsgrid-edit-row input[type='text'],
+  .jsgrid .jsgrid-edit-row input[type='number'],
+  .jsgrid .jsgrid-edit-row input[type='password'],
+  .jsgrid .jsgrid-edit-row input[type='tel'],
+  .jsgrid .jsgrid-edit-row input[type='email'],
+  .jsgrid .jsgrid-edit-row select,
+  .jsgrid .jsgrid-edit-row textarea,
+  .jsgrid .jsgrid-filter-row input[type='text'],
+  .jsgrid .jsgrid-filter-row input[type='number'],
+  .jsgrid .jsgrid-filter-row input[type='password'],
+  .jsgrid .jsgrid-filter-row input[type='tel'],
+  .jsgrid .jsgrid-filter-row input[type='email'],
+  .jsgrid .jsgrid-filter-row select,
+  .jsgrid .jsgrid-filter-row textarea,
+  .jsgrid .jsgrid-insert-row input[type='text'],
+  .jsgrid .jsgrid-insert-row input[type='number'],
+  .jsgrid .jsgrid-insert-row input[type='password'],
+  .jsgrid .jsgrid-insert-row input[type='tel'],
+  .jsgrid .jsgrid-insert-row input[type='email'],
+  .jsgrid .jsgrid-insert-row select,
+  .jsgrid .jsgrid-insert-row textarea,
+  .invoice-head,
+  .mail_tabs,
+  .mail_content,
+  .header-area .search-box,
+  .sidebar-menu .sidebar-header
+  {
+    border-color: #32365a !important;
+  }
+
+  .form-control,
+  .custom-select,
+  .custom-file,
+  .custom-file-label,
+  .jsgrid .jsgrid-edit-row input[type='text'],
+  .jsgrid .jsgrid-edit-row input[type='number'],
+  .jsgrid .jsgrid-edit-row input[type='password'],
+  .jsgrid .jsgrid-edit-row input[type='tel'],
+  .jsgrid .jsgrid-edit-row input[type='email'],
+  .jsgrid .jsgrid-edit-row select,
+  .jsgrid .jsgrid-edit-row textarea,
+  .jsgrid .jsgrid-filter-row input[type='text'],
+  .jsgrid .jsgrid-filter-row input[type='number'],
+  .jsgrid .jsgrid-filter-row input[type='password'],
+  .jsgrid .jsgrid-filter-row input[type='tel'],
+  .jsgrid .jsgrid-filter-row input[type='email'],
+  .jsgrid .jsgrid-filter-row select,
+  .jsgrid .jsgrid-filter-row textarea,
+  .jsgrid .jsgrid-insert-row input[type='text'],
+  .jsgrid .jsgrid-insert-row input[type='number'],
+  .jsgrid .jsgrid-insert-row input[type='password'],
+  .jsgrid .jsgrid-insert-row input[type='tel'],
+  .jsgrid .jsgrid-insert-row input[type='email'],
+  .jsgrid .jsgrid-insert-row select,
+  .jsgrid .jsgrid-insert-row textarea,
+  .mail_tabs li a
+  {
+    background-color: #32365a;
+    color: #fff;
+  }
+
+  .table thead.bg-light th,
+  .nofity-list .notify-thumb i {
+    color: #444 !important;
+  }
+
+  .rt_nav_header.horizontal-layout .nav-bottom .page-navigation > .nav-item > .nav-link,
+  .rt_nav_header.horizontal-layout .menu_icon,
+  .rt_nav_header.horizontal-layout .nav-bottom .page-navigation > .nav-item .submenu ul li a,
+  .dropdown-menu,
+  .dropdown-menu h1, .dropdown-menu h2, .dropdown-menu h3, .dropdown-menu h4, .dropdown-menu h5, .dropdown-menu h6,
+  .dropdown-menu p, .dropdown-menu a, .dropdown-menu a i,
+  .rt_subheader .rt_subheader_main .rt_breadcrumb .rt_breadcrumb_separator,
+  .country_vists .country_vists_item .country_vists_wrapper .country_vists_value,
+  .dropdown-toggle.arrow-none.card-drop,
+  .avg_sale_card p,
+  .table td,
+  .table th,
+  .accordion .card-body,
+  .accordion .card-body p,
+  .card_with_image .blog_card_description .blog_data p,
+  .text-muted,
+  .pagination li a,
+  .form-control-feedback,
+  .invoice-date li,
+  .rt_nav_header.horizontal-layout .nav-bottom .page-navigation > .nav-item > .nav-link .menu-title,
+  .rt_nav_header.horizontal-layout .top_nav .nav_wrapper_main .navbar-nav .nav-item .nav-link.count-indicator i,
+  .rt_nav_header.horizontal-layout .top_nav .nav_wrapper_main .navbar-nav.navbar-nav-right .nav-item.nav-profile .profile_name
+  {
+    color: #d0d4e4 !important;
+  }
+
+  .rt_nav_header.horizontal-layout .nav-bottom .page-navigation > .nav-item:hover > .nav-link i,
+  .rt_nav_header.horizontal-layout .nav-bottom .page-navigation > .nav-item:hover > .nav-link .menu-title,
+  .rt_nav_header.horizontal-layout .nav-bottom .page-navigation > .nav-item.mega-menu .submenu .category-heading,
+  .rt_subheader .rt_subheader_main .rt_breadcrumb .breadcrumb_link:hover,
+  .rt_subheader .rt_subheader_main .rt_breadcrumb .rt_breadcrumb_home_icon:hover i,
+  .card .card_title,
+  .country_vists .country_vists_title,
+  .rt_subheader .rt_subheader_main .rt_subheader_title,
+  .avg_sale_card h1,
+  .avg_sale_card h4,
+  .table thead th,
+  .card_with_image .blog_card_date h3,
+  .card_with_image .blog_card_description .blog_data h3,
+  .image_card .card_title,
+  p,
+  .team_member .member_name span,
+  .team_member ul li i,
+  .article_card h5,
+  .article_card h3 a,
+  .article_card footer .date,
+  .article_card footer .icons,
+  .nav-tabs .nav-link,
+  .blockquote-footer,
+  .close,
+  .popover-body,
+  .grid-col,
+  .fw-icons a,
+  .icon-section .icon-container span.icon-name,
+  .icon-laptop:before,
+  .et-examples .box1,
+  .swal2-popup .swal2-title,
+  .swal2-popup #swal2-content,
+  .swal2-popup .swal2-input,
+  .input-group-text,
+  .dataTables_wrapper .dataTables_length,
+  .dataTables_wrapper .dataTables_filter,
+  .dataTables_wrapper .dataTables_info,
+  .dataTables_wrapper .dataTables_processing,
+  .dataTables_wrapper .dataTables_paginate,
+  .invoice-head .iv-left span,
+  .invoice-head span,
+  #mt_pricing .main_pricing_conatiner .price h2 .price_icon i,
+  #mt_pricing .main_pricing_conatiner .price h2,
+  #mt_pricing .main_pricing_conatiner .price .price_tag,
+  #mt_pricing .main_pricing_conatiner .price .per_month,
+  .form-gp input,
+  .header-area .search-box form input,
+  .header-area .nav-btn i,
+  .notification-area li > i,
+  .browser_section .browser_item h5
+  {
+    color: #fff !important;
+  }
+
+  .rt_nav_header.horizontal-layout .nav-bottom .page-navigation > .nav-item.active > .nav-link .menu-title,
+  .rt_nav_header.horizontal-layout .nav-bottom .page-navigation > .nav-item.active > .nav-link i,
+  .rt_nav_header.horizontal-layout .nav-bottom .page-navigation > .nav-item.active > .nav-link .menu-arrow,
+  .rt_nav_header.horizontal-layout .nav-bottom .page-navigation > .nav-item .submenu ul li a:hover i,
+  .rt_nav_header.horizontal-layout .nav-bottom .page-navigation > .nav-item .submenu ul li a:hover,
+  .rt_nav_header.horizontal-layout .nav-bottom .page-navigation > .nav-item .submenu ul li.active a,
+  .image_card .card_author,
+  .team_member .member_name h3,
+  .fw-icons a i,
+  label,
+  .notification-area li:hover > i, .dropdown.show > i
+  {
+    color: #fff !important;
+    font-weight: bold !important;
+  }
+
+  .todo_container li {
+    background: transparent;
+  }
+
+  .rt_nav_header.horizontal-layout .nav-bottom .page-navigation > .nav-item.mega-menu .submenu,
+  .rt_nav_header.horizontal-layout .nav-bottom .page-navigation > .nav-item:not(.mega-menu) .submenu,
+  .dropdown-menu,
+  .total_sales_sec,
+  .list-group-item,
+  .page-link,
+  .popover-header,
+  .grid-col,
+  table.dataTable thead th, table.dataTable thead td,
+  .jsgrid-header-row>.jsgrid-header-cell,
+  .jsgrid-row>.jsgrid-cell,
+  #mt_pricing .main_pricing_conatiner,
+  .login-form-body,
+  .mail_tabs li.active a,
+  .mail_tabs li a:hover,
+  .mail_content,
+  .metismenu > li:hover > a, .metismenu > li.active > a svg, .metismenu > li.active > a
+  {
+    background: #181831;
+  }
+
+  .input-group-text
+  {
+    background: #181831 !important;
+  }
+
+  .lock-screen .login-form {
+    background: transparent;
+  }
+
+  .dropzone {
+    background: #181831 !important;
+  }
+
+  .rt_subheader,
+  .card,
+  .card_with_image,
+  .image_card .card__info,
+  .team_member,
+  .article_card figcaption,
+  .modal-content,
+  .popover,
+  .swal2-popup,
+  table.dataTable tbody tr,
+  .jsgrid-alt-row>.jsgrid-cell,
+  .login-form,
+  .sidebar-menu,
+  .sidebar-menu .sidebar-header,
+  .nofity-list a:hover,
+  .sidebar_menu,
+  .header-area .header-area-left,
+  &.side_collapsed .menu-inner,
+  &.side_collapsed #page-container .sidebar_menu #sidebar-menu ul > li:hover > a,
+  &.side_collapsed #page-container #sidebar-menu ul ul
+  {
+    background: #242742;
+  }
+
+  .total_sales_sec {
+    p, span, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, small {
+      color: #d0d4e4 !important;
+    }
+  }
+  .recent_activity {
+    p, span, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, small {
+      color: #d0d4e4 !important;
+    }
+  }
+
+  h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, cite,
+  .nt-enveloper-box .nofity-list .notify-text span,
+  .nofity-list .notify-text span {
+    color: #fff;
+  }
+
+  #country_map {
+    a {
+      color: #d0d4e4 !important;
+    }
+  }
+
+  .team_member ul li:hover {
+    background: transparent;
+    border-color: transparent;
+  }
+
+}
+
+// ========================================= //
+//			Dark Theme Styling End
+// ========================================= //

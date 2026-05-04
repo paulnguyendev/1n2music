@@ -1,0 +1,54 @@
+# Dependencies
+node_modules
+vendor
+
+# Version control
+.git
+.gitignore
+.gitattributes
+
+# Testing
+tests
+phpunit.xml
+.phpunit.result.cache
+
+# Storage and logs
+storage/logs
+storage/framework/cache
+storage/framework/sessions
+storage/framework/views
+storage/app/public
+
+# Uploads (mounted as volume, no need to copy)
+public/uploads
+
+# OpenSpec artifacts
+openspec
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Large backup files
+html_backup.zip
+
+# IDE and OS files
+.idea
+.vscode
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Documentation
+README.md
+CLAUDE.md
+
+# CI/CD
+.github
+.gitlab-ci.yml
+
+# Other
+*.log

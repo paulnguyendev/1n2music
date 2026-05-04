@@ -1,0 +1,25 @@
+@media screen and (max-width: 1024px) {
+    .header-area {
+        left: 0;
+        padding: 15px;
+        z-index: 1;
+      }
+      .header-area .notification-area li {
+        margin-top: 0;
+      }
+      .side_collapsed .sidebar_menu {
+        margin-left: -110px;
+      }
+      .side_collapsed #page-container .main-content {
+        margin-left: 0;
+      }
+      .header-area .nav-btn.d_none_lg {
+        display: block!important;
+       
+    }
+}
+@media screen and (max-width: 767.98px) {
+  .header-area .nav-btn {
+    padding-top: 0;
+  }
+}
