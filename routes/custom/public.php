@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\PageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Public\FreeBoardController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\Public\FaqController;
 use App\Http\Controllers\Public\SellerController;
 use App\Http\Controllers\Public\StudioPlatformController;
 use App\Http\Controllers\Public\TrackController;
+use App\Http\Controllers\Public\EnterpriseController;
 $prefix = "public";
 Route::get('/', function () {
     return redirect(app()->getLocale());
@@ -32,6 +34,15 @@ Route::prefix('{locale}')->middleware('setLocale')->group(function () use ($pref
     Route::controller(FaqController::class)->prefix('faq')->group(function() use ($routeName){
         Route::get('/','index')->name($routeName.'/index');
     });
+
+    // Enterprise inquiry routes - for businesses with multiple artists seeking custom solutions
+    // Form submission stores inquiry in rrt_enterprise_inquiries table and sends email to customercare@1n2music.asia
+    $routeName = "{$prefix}/enterprise";
+    Route::controller(EnterpriseController::class)->prefix('enterprise')->group(function() use ($routeName){
+        Route::get('/','index')->name($routeName.'/index');
+        Route::post('/submit','submit')->name($routeName.'/submit');
+    });
+
     $routeName = "{$prefix}/market";
     Route::controller(MarketController::class)->prefix('market')->group(function () use ($routeName) {
         Route::get('/', 'index')->name($routeName . '/index');
